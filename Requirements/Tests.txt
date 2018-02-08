@@ -1,0 +1,6 @@
+Customer Management Tests
+
+Skeleton Test
+Select first menu item (Get all customers) and no customer found
+
+Select first menu item and return all customers found
