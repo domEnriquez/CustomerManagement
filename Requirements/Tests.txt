@@ -1,6 +1,18 @@
 Customer Management Tests
 
 Skeleton Test
-Select first menu item (Get all customers) and no customer found
+Select first menu item (Get all customers) and no customer found - check
 
-Select first menu item and return all customers found
+Select first menu item and return all customers found - check
+Select second option and search by customer id - customer found - check
+Select second option and search by customer id - customer not found - check
+Select third option and search by name - customer found
+Select third option and search by name - customer not found
+
+
+Add a customer with name only
+Empty customer id input when searching by ID
+Empty customer name when searching by name
+Invalid customer id input when searching by ID
+Invalid customer name when searching by name
+Invalid menu option input
