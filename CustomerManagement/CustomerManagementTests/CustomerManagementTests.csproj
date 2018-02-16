@@ -57,6 +57,10 @@
   <ItemGroup>
     <Compile Include="CustomerManagementTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDataBuilders\AddressBuilder.cs" />
+    <Compile Include="TestDataBuilders\ContactBuilder.cs" />
+    <Compile Include="TestDataBuilders\CreditCardBuilder.cs" />
+    <Compile Include="TestDataBuilders\CustomerBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

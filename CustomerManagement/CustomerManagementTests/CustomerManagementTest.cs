@@ -1,6 +1,7 @@
 ﻿using ApprovalTests;
 using ApprovalTests.Reporters;
 using CustomerManagementConsole;
+using CustomerManagementTests.TestDataBuilders;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -46,11 +47,9 @@ namespace CustomerManagementTests
         [Test]
         public void GivenACustomerIsAdded_WhenSelectGetAllCustomersOption_ThenReturnAllCustomers()
         {
-            Address addr = new Address("Home", "City", "State", "1234");
-            Contact contact = new Contact("d@y.com", "512-1235");
-            CreditCard cc = new CreditCard("1234", "VISA", "01-01-2022");
-            repo.AddCustomer(new Customer("1", "Dom", "Enriquez",addr, contact, cc));
-            repo.AddCustomer(new Customer("2", "Roddick", "Quezon",addr, contact, cc));
+            repo.AddCustomer(new CustomerBuilder().build());
+            repo.AddCustomer(new CustomerBuilder().withId("2")
+                                .withName("Roddick", "Quezon").build());
 
             menuItems = Program.BuildMenu(repo, ui);
 
@@ -62,12 +61,10 @@ namespace CustomerManagementTests
         [Test]
         public void GivenACustomerIsAdded_WhenSelectSearchByCustomerIdOptionAndCustomerIsFound_ThenReturnCustomer()
         {
-            Address addr = new Address("Home", "City", "State", "1234");
-            Contact contact = new Contact("d@y.com", "512-1235");
-            CreditCard cc = new CreditCard("1234", "VISA", "01-01-2022");
-            repo.AddCustomer(new Customer("1", "Dom", "Enriquez", addr, contact, cc));
-            repo.AddCustomer(new Customer("2", "Roddick", "Quezon", addr, contact, cc));
-           
+            repo.AddCustomer(new CustomerBuilder().build());
+            repo.AddCustomer(new CustomerBuilder().withId("2")
+                                .withName("Roddick", "Quezon").build());
+
             menuItems = Program.BuildMenu(repo, ui);
 
             using (StringReader sr = new StringReader("1"))
@@ -76,7 +73,6 @@ namespace CustomerManagementTests
                 menuItems[(int)menuEnum.GetCustomerById].ExecuteCommand();
             }
 
-            
             Approvals.Verify(fakeOutput);
         }
 
@@ -97,10 +93,7 @@ namespace CustomerManagementTests
         [Test]
         public void WhenSelectAddCustomerAndNoInvalidInputs_ThenStoreCustomer()
         {
-            Address addr = new Address("Home", "City", "State", "1234");
-            Contact contact = new Contact("d@y.com", "512-1235");
-            CreditCard cc = new CreditCard("1234", "VISA", "01-01-2022");
-            Customer expectCust = new Customer("8", "Dom", "Enriquez", addr, contact, cc);
+            Customer expectCust = new CustomerBuilder().withId("8").build();
 
             menuItems = Program.BuildMenu(repo, ui);
 
