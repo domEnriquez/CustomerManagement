@@ -1,0 +1,14 @@
+﻿Customer ID: 
+First Name: 
+Last Name: 
+Email: 
+Home Address: 
+City: 
+State: 
+Zip Code: 
+Phone Number: 
+Credit Card Number: 
+Credit Card Type: 
+Credit Card Expiration Date: 
+
+Customer data successfully saved.

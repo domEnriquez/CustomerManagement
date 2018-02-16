@@ -25,7 +25,7 @@ namespace CustomerManagementConsole
             if (cust == null)
                 ui.ShowNoCustomers();
             else
-                ui.ShowCustomer(custRepo.GetCustomerById(id));
+                ui.ShowCustomer(cust);
         }
     }
 }

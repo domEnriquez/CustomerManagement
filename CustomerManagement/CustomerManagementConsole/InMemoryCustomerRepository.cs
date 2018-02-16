@@ -29,7 +29,7 @@ namespace CustomerManagementConsole
 
         public Customer GetCustomerById(string id)
         {
-            return customers.FirstOrDefault(cust => cust.CustomerID.ToString() == id);
+            return customers.FirstOrDefault(cust => cust.CustomerID == id);
         }
     }
 }

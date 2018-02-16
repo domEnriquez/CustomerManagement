@@ -8,14 +8,22 @@ namespace CustomerManagementConsole
 {
     public class Customer
     {
-        public int CustomerID { get; set; }
+        public string CustomerID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public string Name { get; set; }
+        public Address Address { get; set; }
+        public Contact Contact { get; set; }
+        public CreditCard CreditCard { get; set; }
 
-        public Customer(int id, string name)
+        public Customer(string id, string fn, string ln, Address addr, Contact contact, CreditCard cc)
         {
             CustomerID = id;
-            Name = name;
+            FirstName = fn;
+            LastName = ln;
+            Address = addr;
+            Contact = contact;
+            CreditCard = cc;
         }
     }
 }

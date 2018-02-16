@@ -19,6 +19,7 @@ namespace CustomerManagementConsole
 
             menuItems.Add(new MenuItem(new GetAllCustomersCommand(custRepo, ui)));
             menuItems.Add(new MenuItem(new GetCustomerByIdCommand(custRepo, ui)));
+            menuItems.Add(new MenuItem(new AddCustomerCommand(custRepo, ui)));
 
             return menuItems;
         }

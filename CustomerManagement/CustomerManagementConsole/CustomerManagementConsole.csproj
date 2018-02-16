@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCustomerCommand.cs" />
+    <Compile Include="Address.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="ConsoleUserInterface.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="CreditCard.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="GetAllCustomersCommand.cs" />

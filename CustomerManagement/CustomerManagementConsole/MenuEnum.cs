@@ -9,6 +9,7 @@ namespace CustomerManagementConsole
     public enum menuEnum
     {
         GetAllCustomers,
-        GetCustomerById
+        GetCustomerById,
+        AddCustomer
     }
 }

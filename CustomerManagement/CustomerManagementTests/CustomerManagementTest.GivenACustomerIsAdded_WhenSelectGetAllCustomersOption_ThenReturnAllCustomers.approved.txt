@@ -1,8 +1,26 @@
 ﻿---------------
 Customer ID: 1
-Name: Dom
+Name: Dom Enriquez
+Email: d@y.com
+Phone: 512-1235
+Home Address: Home
+City: City
+State: State
+Zip Code: 1234
+Credit Card No: 1234
+Credit Card Type: VISA
+Credit Card Expiration Date: 01-01-2022
 ---------------
 ---------------
 Customer ID: 2
-Name: Roddick
+Name: Roddick Quezon
+Email: d@y.com
+Phone: 512-1235
+Home Address: Home
+City: City
+State: State
+Zip Code: 1234
+Credit Card No: 1234
+Credit Card Type: VISA
+Credit Card Expiration Date: 01-01-2022
 ---------------

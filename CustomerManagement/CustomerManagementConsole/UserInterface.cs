@@ -14,6 +14,10 @@ namespace CustomerManagementConsole
 
         void ShowCustomer(Customer customer);
 
+        void ShowCustomerIsSaved();
+
         string GetUserInput();
+
+        string AskFor(string fieldLabel);
     }
 }

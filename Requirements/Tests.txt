@@ -6,13 +6,14 @@ Select first menu item (Get all customers) and no customer found - check
 Select first menu item and return all customers found - check
 Select second option and search by customer id - customer found - check
 Select second option and search by customer id - customer not found - check
+Add a customer with no invalid inputs - check
 Select third option and search by name - customer found
 Select third option and search by name - customer not found
 
 
-Add a customer with name only
+add customer input validatio
 Empty customer id input when searching by ID
 Empty customer name when searching by name
-Invalid customer id input when searching by ID
-Invalid customer name when searching by name
-Invalid menu option input
+Invalid customer id input when searching by ID then ask again for valid ID
+Invalid customer name when searching by name then ask again for valid name
+Invalid menu option input then ask again for valid menu option
