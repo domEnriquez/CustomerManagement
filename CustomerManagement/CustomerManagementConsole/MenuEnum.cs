@@ -10,6 +10,7 @@ namespace CustomerManagementConsole
     {
         GetAllCustomers,
         GetCustomerById,
-        AddCustomer
+        GetCustomerByName,
+        AddCustomer,
     }
 }

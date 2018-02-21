@@ -14,6 +14,15 @@ namespace CustomerManagementTests
     [UseReporter(typeof(DiffReporter))]
     public class CustomerManagementTest
     {
+        private string simulatedCustDetailInput(Customer expectCust)
+        {
+            return string.Format(expectCust.CustomerID + "{0}" + expectCust.FirstName + "{0}" + expectCust.LastName +
+                                    "{0}" + expectCust.Contact.Email + "{0}" + expectCust.Address.HomeAddress + "{0}" + expectCust.Address.City +
+                                    "{0}" + expectCust.Address.State + "{0}" + expectCust.Address.ZipCode + "{0}" + expectCust.Contact.PhoneNumber +
+                                    "{0}" + expectCust.CreditCard.Number + "{0}" + expectCust.CreditCard.Type + "{0}" +
+                                    expectCust.CreditCard.ExpirationDate, Environment.NewLine);
+        }
+
         private StringBuilder fakeOutput;
         private CustomerRepository repo;
         private UserInterface ui;
@@ -105,29 +114,42 @@ namespace CustomerManagementTests
 
             Customer actualCust = repo.GetCustomerById("8");
 
-            Assert.AreEqual(expectCust.CustomerID, actualCust.CustomerID);
-            Assert.AreEqual(expectCust.FirstName, actualCust.FirstName);
-            Assert.AreEqual(expectCust.LastName, actualCust.LastName);
-            Assert.AreEqual(expectCust.Contact.Email, actualCust.Contact.Email);
-            Assert.AreEqual(expectCust.Address.HomeAddress, actualCust.Address.HomeAddress);
-            Assert.AreEqual(expectCust.Address.City, actualCust.Address.City);
-            Assert.AreEqual(expectCust.Address.State, actualCust.Address.State);
-            Assert.AreEqual(expectCust.Address.ZipCode, actualCust.Address.ZipCode);
-            Assert.AreEqual(expectCust.Contact.PhoneNumber, actualCust.Contact.PhoneNumber);
-            Assert.AreEqual(expectCust.CreditCard.Number, actualCust.CreditCard.Number);
-            Assert.AreEqual(expectCust.CreditCard.Type, actualCust.CreditCard.Type);
-            Assert.AreEqual(expectCust.CreditCard.ExpirationDate, actualCust.CreditCard.ExpirationDate);
+            Assert.AreEqual(expectCust, actualCust);
 
             Approvals.Verify(fakeOutput);
         }
 
-        private string simulatedCustDetailInput(Customer expectCust)
+        [Test]
+        public void WhenSelectSearchByNameAndCustomerIsFound_ThenReturnCustomer()
         {
-            return string.Format(expectCust.CustomerID + "{0}" + expectCust.FirstName + "{0}" + expectCust.LastName +
-                                    "{0}" + expectCust.Contact.Email + "{0}" + expectCust.Address.HomeAddress + "{0}" + expectCust.Address.City +
-                                    "{0}" + expectCust.Address.State + "{0}" + expectCust.Address.ZipCode + "{0}" + expectCust.Contact.PhoneNumber +
-                                    "{0}" + expectCust.CreditCard.Number + "{0}" + expectCust.CreditCard.Type + "{0}" + 
-                                    expectCust.CreditCard.ExpirationDate, Environment.NewLine);
+            repo.AddCustomer(new CustomerBuilder().withName("Dominic", "Enriquez").build());
+            repo.AddCustomer(new CustomerBuilder().withId("2")
+                                .withName("Roddick", "Quezon").build());
+            repo.AddCustomer(new CustomerBuilder().withId("3").withName("Dominic", "Roque").build());
+
+            menuItems = Program.BuildMenu(repo, ui);
+
+            using (StringReader sr = new StringReader("Dom"))
+            {
+                Console.SetIn(sr);
+                menuItems[(int)menuEnum.GetCustomerByName].ExecuteCommand();
+            }
+
+            Approvals.Verify(fakeOutput);
+        }
+
+        [Test]
+        public void WhenSelectSearchByNameOptionAndNoCustomerIsFound_ThenReturnNoCustomersFound()
+        {
+            menuItems = Program.BuildMenu(repo, ui);
+
+            using (StringReader sr = new StringReader("Dom"))
+            {
+                Console.SetIn(sr);
+                menuItems[(int)menuEnum.GetCustomerByName].ExecuteCommand();
+            }
+
+            Approvals.Verify(fakeOutput);
         }
     }
 }

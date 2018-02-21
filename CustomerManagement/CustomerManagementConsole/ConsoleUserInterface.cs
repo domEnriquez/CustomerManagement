@@ -40,7 +40,7 @@ namespace CustomerManagementConsole
             {
                 Console.WriteLine("---------------");
                 Console.WriteLine("Customer ID: " + cust.CustomerID);
-                Console.WriteLine("Name: " + cust.FirstName + " " + cust.LastName);
+                Console.WriteLine("Name: " + cust.FullName);
                 Console.WriteLine("Email: " + cust.Contact.Email);
                 Console.WriteLine("Phone: " + cust.Contact.PhoneNumber);
                 Console.WriteLine("Home Address: " + cust.Address.HomeAddress);

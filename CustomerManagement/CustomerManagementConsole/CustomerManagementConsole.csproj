@@ -52,6 +52,7 @@
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="GetAllCustomersCommand.cs" />
     <Compile Include="GetCustomerByIdCommand.cs" />
+    <Compile Include="GetCustomerByNameCommand.cs" />
     <Compile Include="InMemoryCustomerRepository.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuEnum.cs" />

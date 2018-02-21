@@ -12,5 +12,24 @@
             Type = ccType;
             ExpirationDate = ccExpiry;
         }
+
+        public override bool Equals(object cc)
+        {
+            if (!(cc is CreditCard))
+                return false;
+
+            CreditCard otherCard = (CreditCard)cc;
+
+            if (Number != otherCard.Number) return false;
+            if (Type != otherCard.Type) return false;
+            if (ExpirationDate != otherCard.ExpirationDate) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

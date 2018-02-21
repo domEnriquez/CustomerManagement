@@ -31,5 +31,10 @@ namespace CustomerManagementConsole
         {
             return customers.FirstOrDefault(cust => cust.CustomerID == id);
         }
+
+        public IEnumerable<Customer> GetCustomersByName(string name)
+        {
+            return customers.Where(cust => cust.FullName.Contains(name));
+        }
     }
 }
