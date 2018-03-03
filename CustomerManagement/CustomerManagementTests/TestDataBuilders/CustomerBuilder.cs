@@ -9,7 +9,7 @@ namespace CustomerManagementTests.TestDataBuilders
 {
     public class CustomerBuilder
     {
-        private string id = "1";
+        private string id = "000001";
         private string firstName = "Dom";
         private string lastName = "Enriquez";
         private Address address = new AddressBuilder().build();

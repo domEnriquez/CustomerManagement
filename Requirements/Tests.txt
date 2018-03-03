@@ -7,8 +7,8 @@ Select first menu item and return all customers found - check
 Select second option and search by customer id - customer found - check
 Select second option and search by customer id - customer not found - check
 Add a customer with no invalid inputs - check
-Select third option and search by name - customer found
-Select third option and search by name - customer not found
+Select third option and search by name - customer found - check
+Select third option and search by name - customer not found - check
 
 
 add customer input validation

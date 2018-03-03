@@ -23,6 +23,15 @@ namespace CustomerManagementTests
                                     expectCust.CreditCard.ExpirationDate, Environment.NewLine);
         }
 
+        private string simuCustDetailInputWithCorrectedId(Customer expectCust, string correctId)
+        {
+            return string.Format(expectCust.CustomerID + "{0}" + correctId + "{0}" + expectCust.FirstName + "{0}" + expectCust.LastName +
+                                    "{0}" + expectCust.Contact.Email + "{0}" + expectCust.Address.HomeAddress + "{0}" + expectCust.Address.City +
+                                    "{0}" + expectCust.Address.State + "{0}" + expectCust.Address.ZipCode + "{0}" + expectCust.Contact.PhoneNumber +
+                                    "{0}" + expectCust.CreditCard.Number + "{0}" + expectCust.CreditCard.Type + "{0}" +
+                                    expectCust.CreditCard.ExpirationDate, Environment.NewLine);
+        }
+
         private StringBuilder fakeOutput;
         private CustomerRepository repo;
         private UserInterface ui;
@@ -31,9 +40,10 @@ namespace CustomerManagementTests
         [SetUp]
         public void SetUp()
         {
-            menuItems = new List<MenuItem>();
+
             repo = new InMemoryCustomerRepository();
             ui = new ConsoleUserInterface();
+            menuItems = Program.BuildMenu(repo, ui);
             fakeOutput = new StringBuilder();
             Console.SetOut(new StringWriter(fakeOutput));
         }
@@ -47,7 +57,6 @@ namespace CustomerManagementTests
         [Test]
         public void GivenNoCustomerAdded_WhenSelectGetAllCustomersOption_ThenReturnNoCustomersFound()
         {
-            menuItems = Program.BuildMenu(repo, ui);
             menuItems[(int)menuEnum.GetAllCustomers].ExecuteCommand();
 
             Approvals.Verify(fakeOutput);
@@ -57,10 +66,8 @@ namespace CustomerManagementTests
         public void GivenACustomerIsAdded_WhenSelectGetAllCustomersOption_ThenReturnAllCustomers()
         {
             repo.AddCustomer(new CustomerBuilder().build());
-            repo.AddCustomer(new CustomerBuilder().withId("2")
+            repo.AddCustomer(new CustomerBuilder().withId("000002")
                                 .withName("Roddick", "Quezon").build());
-
-            menuItems = Program.BuildMenu(repo, ui);
 
             menuItems[(int)menuEnum.GetAllCustomers].ExecuteCommand();
 
@@ -71,12 +78,10 @@ namespace CustomerManagementTests
         public void GivenACustomerIsAdded_WhenSelectSearchByCustomerIdOptionAndCustomerIsFound_ThenReturnCustomer()
         {
             repo.AddCustomer(new CustomerBuilder().build());
-            repo.AddCustomer(new CustomerBuilder().withId("2")
+            repo.AddCustomer(new CustomerBuilder().withId("000002")
                                 .withName("Roddick", "Quezon").build());
 
-            menuItems = Program.BuildMenu(repo, ui);
-
-            using (StringReader sr = new StringReader("1"))
+            using (StringReader sr = new StringReader("000001"))
             {
                 Console.SetIn(sr);
                 menuItems[(int)menuEnum.GetCustomerById].ExecuteCommand();
@@ -88,9 +93,7 @@ namespace CustomerManagementTests
         [Test]
         public void WhenSelectSearchByCustomerIdOptionAndNoCustomerIsFound_ThenReturnNoCustomersFound()
         {
-            menuItems = Program.BuildMenu(repo, ui);
-
-            using (StringReader sr = new StringReader("1"))
+            using (StringReader sr = new StringReader("000001"))
             {
                 Console.SetIn(sr);
                 menuItems[(int)menuEnum.GetCustomerById].ExecuteCommand();
@@ -102,9 +105,7 @@ namespace CustomerManagementTests
         [Test]
         public void WhenSelectAddCustomerAndNoInvalidInputs_ThenStoreCustomer()
         {
-            Customer expectCust = new CustomerBuilder().withId("8").build();
-
-            menuItems = Program.BuildMenu(repo, ui);
+            Customer expectCust = new CustomerBuilder().withId("000008").build();
 
             using(StringReader sr = new StringReader(simulatedCustDetailInput(expectCust)))
             {
@@ -112,8 +113,48 @@ namespace CustomerManagementTests
                 menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
             }
 
-            Customer actualCust = repo.GetCustomerById("8");
+            Customer actualCust = repo.GetCustomerById("000008");
 
+            Assert.AreEqual(expectCust, actualCust);
+
+            Approvals.Verify(fakeOutput);
+        }
+
+        [Test]
+        public void GivenEmptyCustomerId_WhenAddCustomer_ThenAskForCustomerIdAgain()
+        {
+            Customer expectCust = new CustomerBuilder().withId("").build();
+            string validCustId = "000008";
+
+            using(StringReader sr = new StringReader(simuCustDetailInputWithCorrectedId(expectCust, validCustId)))
+            {
+                Console.SetIn(sr);
+                menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
+            }
+
+            Customer actualCust = repo.GetCustomerById(validCustId);
+
+            expectCust.CustomerID = validCustId;
+            Assert.AreEqual(expectCust, actualCust);
+
+            Approvals.Verify(fakeOutput);
+        }
+
+        [Test]
+        public void GivenCustIdHasInvalidLength_WhenAddCustomer_ThenAskForCustomerIdAgain()
+        {
+            Customer expectCust = new CustomerBuilder().withId("001").build();
+            string validCustId = "000008";
+
+            using (StringReader sr = new StringReader(simuCustDetailInputWithCorrectedId(expectCust, validCustId)))
+            {
+                Console.SetIn(sr);
+                menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
+            }
+
+            Customer actualCust = repo.GetCustomerById(validCustId);
+
+            expectCust.CustomerID = validCustId;
             Assert.AreEqual(expectCust, actualCust);
 
             Approvals.Verify(fakeOutput);
@@ -123,11 +164,9 @@ namespace CustomerManagementTests
         public void WhenSelectSearchByNameAndCustomerIsFound_ThenReturnCustomer()
         {
             repo.AddCustomer(new CustomerBuilder().withName("Dominic", "Enriquez").build());
-            repo.AddCustomer(new CustomerBuilder().withId("2")
+            repo.AddCustomer(new CustomerBuilder().withId("000002")
                                 .withName("Roddick", "Quezon").build());
-            repo.AddCustomer(new CustomerBuilder().withId("3").withName("Dominic", "Roque").build());
-
-            menuItems = Program.BuildMenu(repo, ui);
+            repo.AddCustomer(new CustomerBuilder().withId("000003").withName("Dominic", "Roque").build());
 
             using (StringReader sr = new StringReader("Dom"))
             {
@@ -141,8 +180,6 @@ namespace CustomerManagementTests
         [Test]
         public void WhenSelectSearchByNameOptionAndNoCustomerIsFound_ThenReturnNoCustomersFound()
         {
-            menuItems = Program.BuildMenu(repo, ui);
-
             using (StringReader sr = new StringReader("Dom"))
             {
                 Console.SetIn(sr);

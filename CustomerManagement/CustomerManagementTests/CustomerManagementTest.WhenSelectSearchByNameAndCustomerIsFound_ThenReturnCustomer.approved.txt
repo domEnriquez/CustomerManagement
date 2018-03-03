@@ -1,5 +1,5 @@
 ﻿---------------
-Customer ID: 1
+Customer ID: 000001
 Name: Dominic Enriquez
 Email: d@y.com
 Phone: 512-1235
@@ -12,7 +12,7 @@ Credit Card Type: VISA
 Credit Card Expiration Date: 01-01-2022
 ---------------
 ---------------
-Customer ID: 3
+Customer ID: 000003
 Name: Dominic Roque
 Email: d@y.com
 Phone: 512-1235

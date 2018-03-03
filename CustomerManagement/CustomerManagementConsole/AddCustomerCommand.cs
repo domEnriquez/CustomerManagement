@@ -20,6 +20,19 @@ namespace CustomerManagementConsole
         public void Execute()
         {
             string id = ui.AskFor("Customer ID");
+
+            if (id == string.Empty)
+            {
+                Console.WriteLine("Customer ID is required.");
+                id = ui.AskFor("Customer ID");
+            }
+
+            if(id.Length != 6)
+            {
+                Console.WriteLine("Customer ID must be exactly 6 characters.");
+                id = ui.AskFor("Customer ID");
+            }
+
             string firstName = ui.AskFor("First Name");
             string lastName = ui.AskFor("Last Name");
             string email = ui.AskFor("Email");
