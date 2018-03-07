@@ -23,13 +23,22 @@ namespace CustomerManagementTests
                                     expectCust.CreditCard.ExpirationDate, Environment.NewLine);
         }
 
-        private string simuCustDetailInputWithCorrectedId(Customer expectCust, string correctId)
+        private string simuCustDetailInputWithCorrectedId(Customer wrongIdCust, int wrongInputCount, string correctId)
         {
-            return string.Format(expectCust.CustomerID + "{0}" + correctId + "{0}" + expectCust.FirstName + "{0}" + expectCust.LastName +
-                                    "{0}" + expectCust.Contact.Email + "{0}" + expectCust.Address.HomeAddress + "{0}" + expectCust.Address.City +
-                                    "{0}" + expectCust.Address.State + "{0}" + expectCust.Address.ZipCode + "{0}" + expectCust.Contact.PhoneNumber +
-                                    "{0}" + expectCust.CreditCard.Number + "{0}" + expectCust.CreditCard.Type + "{0}" +
-                                    expectCust.CreditCard.ExpirationDate, Environment.NewLine);
+            string wrongIdInputs = string.Empty;
+
+            for (int i = 1; i <= wrongInputCount; i++)
+                if (i == wrongInputCount)
+                    wrongIdInputs += wrongIdCust.CustomerID;
+                else
+                    wrongIdInputs += wrongIdCust.CustomerID + "{0}";
+            
+
+            return string.Format(wrongIdInputs + "{0}" + correctId + "{0}" + wrongIdCust.FirstName + "{0}" + wrongIdCust.LastName +
+                                    "{0}" + wrongIdCust.Contact.Email + "{0}" + wrongIdCust.Address.HomeAddress + "{0}" + wrongIdCust.Address.City +
+                                    "{0}" + wrongIdCust.Address.State + "{0}" + wrongIdCust.Address.ZipCode + "{0}" + wrongIdCust.Contact.PhoneNumber +
+                                    "{0}" + wrongIdCust.CreditCard.Number + "{0}" + wrongIdCust.CreditCard.Type + "{0}" +
+                                    wrongIdCust.CreditCard.ExpirationDate, Environment.NewLine);
         }
 
         private StringBuilder fakeOutput;
@@ -124,29 +133,28 @@ namespace CustomerManagementTests
         public void GivenEmptyCustomerId_WhenAddCustomer_ThenAskForCustomerIdAgain()
         {
             Customer expectCust = new CustomerBuilder().withId("").build();
-            string validCustId = "000008";
-
-            using(StringReader sr = new StringReader(simuCustDetailInputWithCorrectedId(expectCust, validCustId)))
-            {
-                Console.SetIn(sr);
-                menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
-            }
-
-            Customer actualCust = repo.GetCustomerById(validCustId);
-
-            expectCust.CustomerID = validCustId;
-            Assert.AreEqual(expectCust, actualCust);
-
-            Approvals.Verify(fakeOutput);
+            assertAskedForCustIdAgain(expectCust);
         }
 
         [Test]
         public void GivenCustIdHasInvalidLength_WhenAddCustomer_ThenAskForCustomerIdAgain()
         {
             Customer expectCust = new CustomerBuilder().withId("001").build();
+            assertAskedForCustIdAgain(expectCust);
+        }
+
+        [Test]
+        public void GivenANonNumberCustId_WhenAddCustomer_ThenAskForCustomerIdAgain()
+        {
+            Customer expectCust = new CustomerBuilder().withId("abcdef").build();
+            assertAskedForCustIdAgain(expectCust);
+        }
+
+        private void assertAskedForCustIdAgain(Customer expectCust)
+        {
             string validCustId = "000008";
 
-            using (StringReader sr = new StringReader(simuCustDetailInputWithCorrectedId(expectCust, validCustId)))
+            using (StringReader sr = new StringReader(simuCustDetailInputWithCorrectedId(expectCust, 4, validCustId)))
             {
                 Console.SetIn(sr);
                 menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();

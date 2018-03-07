@@ -21,16 +21,14 @@ namespace CustomerManagementConsole
         {
             string id = ui.AskFor("Customer ID");
 
-            if (id == string.Empty)
-            {
-                Console.WriteLine("Customer ID is required.");
-                id = ui.AskFor("Customer ID");
-            }
+            Validator v = new Required(new ReqLength(6, new NumberOnly(new DefaultValidator())));
+            ValidationResult vr = v.Validate("Customer ID", id);
 
-            if(id.Length != 6)
+            while(!vr.Result)
             {
-                Console.WriteLine("Customer ID must be exactly 6 characters.");
+                ui.ShowMessage(vr.Message);
                 id = ui.AskFor("Customer ID");
+                vr = v.Validate("Customer ID", id);
             }
 
             string firstName = ui.AskFor("First Name");

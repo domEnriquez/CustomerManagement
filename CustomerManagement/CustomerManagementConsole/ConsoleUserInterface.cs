@@ -55,9 +55,24 @@ namespace CustomerManagementConsole
             }
         }
 
+        public void ShowMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
+
         public void ShowNoCustomers()
         {
             Console.WriteLine("No Customers Found");
+        }
+
+        public void ShowReqLength(string fieldLabel, int reqLength)
+        {
+            Console.WriteLine(fieldLabel + " must be exactly " + reqLength + " characters.");
+        }
+
+        public void ShowRequired(string fieldLabel)
+        {
+            Console.WriteLine(fieldLabel + " is required.");
         }
     }
 }

@@ -1,6 +1,12 @@
 ﻿Customer ID: 
 Customer ID is required.
 Customer ID: 
+Customer ID is required.
+Customer ID: 
+Customer ID is required.
+Customer ID: 
+Customer ID is required.
+Customer ID: 
 First Name: 
 Last Name: 
 Email: 

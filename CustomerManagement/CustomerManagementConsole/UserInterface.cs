@@ -8,6 +8,12 @@ namespace CustomerManagementConsole
 {
     public interface UserInterface
     {
+        string GetUserInput();
+
+        string AskFor(string fieldLabel);
+
+        void ShowMessage(string message);
+
         void ShowNoCustomers();
 
         void ShowCustomers(IEnumerable<Customer> customers);
@@ -16,8 +22,8 @@ namespace CustomerManagementConsole
 
         void ShowCustomerIsSaved();
 
-        string GetUserInput();
+        void ShowRequired(string fieldLabel);
 
-        string AskFor(string fieldLabel);
+        void ShowReqLength(string fieldLabel, int reqLength);
     }
 }

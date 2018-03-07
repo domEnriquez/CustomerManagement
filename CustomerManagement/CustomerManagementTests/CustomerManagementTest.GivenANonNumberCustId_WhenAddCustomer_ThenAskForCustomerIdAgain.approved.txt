@@ -1,11 +1,11 @@
 ﻿Customer ID: 
-Customer ID must be exactly 6 characters.
+Customer ID is not a number.
 Customer ID: 
-Customer ID must be exactly 6 characters.
+Customer ID is not a number.
 Customer ID: 
-Customer ID must be exactly 6 characters.
+Customer ID is not a number.
 Customer ID: 
-Customer ID must be exactly 6 characters.
+Customer ID is not a number.
 Customer ID: 
 First Name: 
 Last Name: 
