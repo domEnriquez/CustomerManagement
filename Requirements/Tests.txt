@@ -9,9 +9,12 @@ Select second option and search by customer id - customer not found - check
 Add a customer with no invalid inputs - check
 Select third option and search by name - customer found - check
 Select third option and search by name - customer not found - check
-
-
 add customer input validation
+	customer ID 
+		required - check
+		required length - check
+		numbers only - check
+	
 Empty customer id input when searching by ID
 Empty customer name when searching by name
 Invalid customer id input when searching by ID then ask again for valid ID

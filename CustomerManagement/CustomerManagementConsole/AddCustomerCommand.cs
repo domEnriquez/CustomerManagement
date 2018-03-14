@@ -32,6 +32,17 @@ namespace CustomerManagementConsole
             }
 
             string firstName = ui.AskFor("First Name");
+
+            v = new Required(new DefaultValidator());
+            vr = v.Validate("First Name", firstName);
+
+            while(!vr.Result)
+            {
+                ui.ShowMessage(vr.Message);
+                firstName = ui.AskFor("First Name");
+                vr = v.Validate("First Name", firstName);
+            }
+
             string lastName = ui.AskFor("Last Name");
             string email = ui.AskFor("Email");
             string homeAddress = ui.AskFor("Home Address");
