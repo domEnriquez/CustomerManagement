@@ -152,7 +152,7 @@ namespace CustomerManagementTests
             {
                 string validCustName = "Dominic";
 
-                using (StringReader sr = new StringReader(custInputWithCorrectedFirstName(expectCust, 4, validCustName)))
+                using (StringReader sr = new StringReader(simulateAddCustWithCorrectedInput(expectCust, 1, 4, validCustName)))
                 {
                     Console.SetIn(sr);
                     menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
@@ -170,7 +170,7 @@ namespace CustomerManagementTests
             {
                 string validCustId = "000008";
 
-                using (StringReader sr = new StringReader(custInputWithCorrectedId(expectCust, 4, validCustId)))
+                using (StringReader sr = new StringReader(simulateAddCustWithCorrectedInput(expectCust, 0, 4, validCustId)))
                 {
                     Console.SetIn(sr);
                     menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
@@ -184,40 +184,25 @@ namespace CustomerManagementTests
                 Approvals.Verify(fakeOutput);
             }
 
-            private string custInputWithCorrectedId(Customer wrongIdCust, int wrongInputCount, string correctId)
+            private string simulateAddCustWithCorrectedInput(Customer cust, int wrongInputPos, int wrongInputCount, string correctInput)
             {
-                string wrongIdInputs = string.Empty;
+                string simulatedInput = simulatedCustDetailInput(cust);
+                string[] splitInput = simulatedInput.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                string wrongInputs = replicateInput(splitInput[wrongInputPos], wrongInputCount);
 
-                for (int i = 1; i <= wrongInputCount; i++)
-                    if (i == wrongInputCount)
-                        wrongIdInputs += wrongIdCust.CustomerID;
-                    else
-                        wrongIdInputs += wrongIdCust.CustomerID + "{0}";
+                splitInput[wrongInputPos] = wrongInputs + correctInput;
 
-
-                return string.Format(wrongIdInputs + "{0}" + correctId + "{0}" + wrongIdCust.FirstName + "{0}" + wrongIdCust.LastName +
-                                        "{0}" + wrongIdCust.Contact.Email + "{0}" + wrongIdCust.Address.HomeAddress + "{0}" + wrongIdCust.Address.City +
-                                        "{0}" + wrongIdCust.Address.State + "{0}" + wrongIdCust.Address.ZipCode + "{0}" + wrongIdCust.Contact.PhoneNumber +
-                                        "{0}" + wrongIdCust.CreditCard.Number + "{0}" + wrongIdCust.CreditCard.Type + "{0}" +
-                                        wrongIdCust.CreditCard.ExpirationDate, Environment.NewLine);
+                return string.Join(Environment.NewLine, splitInput);
             }
 
-            private string custInputWithCorrectedFirstName(Customer wrongNameCust, int wrongInputCount, string correctName)
+            private string replicateInput(string wrongInput, int wrongInputCount)
             {
-                string wrongNameInputs = string.Empty;
+                string wrongInputs = string.Empty;
 
                 for (int i = 1; i <= wrongInputCount; i++)
-                    if (i == wrongInputCount)
-                        wrongNameInputs += wrongNameCust.FirstName;
-                    else
-                        wrongNameInputs += wrongNameCust.FirstName + "{0}";
+                    wrongInputs += wrongInput + Environment.NewLine;
 
-
-                return string.Format(wrongNameCust.CustomerID + "{0}" + wrongNameInputs + "{0}" + correctName + "{0}" + wrongNameCust.LastName +
-                                        "{0}" + wrongNameCust.Contact.Email + "{0}" + wrongNameCust.Address.HomeAddress + "{0}" + wrongNameCust.Address.City +
-                                        "{0}" + wrongNameCust.Address.State + "{0}" + wrongNameCust.Address.ZipCode + "{0}" + wrongNameCust.Contact.PhoneNumber +
-                                        "{0}" + wrongNameCust.CreditCard.Number + "{0}" + wrongNameCust.CreditCard.Type + "{0}" +
-                                        wrongNameCust.CreditCard.ExpirationDate, Environment.NewLine);
+                return wrongInputs;
             }
 
             [Test]
