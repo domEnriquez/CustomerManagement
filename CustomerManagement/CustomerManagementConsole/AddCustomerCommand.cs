@@ -19,30 +19,8 @@ namespace CustomerManagementConsole
 
         public void Execute()
         {
-            string id = ui.AskFor("Customer ID");
-
-            Validator v = new Required(new ReqLength(6, new NumberOnly(new DefaultValidator())));
-            ValidationResult vr = v.Validate("Customer ID", id);
-
-            while(!vr.Result)
-            {
-                ui.ShowMessage(vr.Message);
-                id = ui.AskFor("Customer ID");
-                vr = v.Validate("Customer ID", id);
-            }
-
-            string firstName = ui.AskFor("First Name");
-
-            v = new Required(new DefaultValidator());
-            vr = v.Validate("First Name", firstName);
-
-            while(!vr.Result)
-            {
-                ui.ShowMessage(vr.Message);
-                firstName = ui.AskFor("First Name");
-                vr = v.Validate("First Name", firstName);
-            }
-
+            string id = getInput("Customer ID", new Required(new ReqLength(6, new NumberOnly(new DefaultValidator()))));
+            string firstName = getInput("First Name", new Required(new DefaultValidator()));
             string lastName = ui.AskFor("Last Name");
             string email = ui.AskFor("Email");
             string homeAddress = ui.AskFor("Home Address");
@@ -62,6 +40,21 @@ namespace CustomerManagementConsole
             custRepo.AddCustomer(cust);
 
             ui.ShowCustomerIsSaved();
+        }
+
+        private string getInput(string fieldLabel, Validator v)
+        {
+            string fieldVal = ui.AskFor(fieldLabel);
+            ValidationResult vr = v.Validate(fieldLabel, fieldVal);
+
+            while (!vr.Result)
+            {
+                ui.ShowMessage(vr.Message);
+                fieldVal = ui.AskFor(fieldLabel);
+                vr = v.Validate(fieldLabel, fieldVal);
+            }
+
+            return fieldVal;
         }
     }
 }
