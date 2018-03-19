@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BC40434-0040-4038-AB50-1054BAEEE201}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>CustomerManagementConsole</RootNamespace>
-    <AssemblyName>CustomerManagementConsole</AssemblyName>
+    <ProjectGuid>{D945B099-247B-4D37-B6C4-A71BFDCD199F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AbstractRepository</RootNamespace>
+    <AssemblyName>AbstractRepository</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,39 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleUserInterface.cs" />
-    <Compile Include="MenuItem.cs" />
-    <Compile Include="MenuEnum.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="CustomerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AbstractCommand\AbstractCommand.csproj">
-      <Project>{C93C6554-7DB4-48F2-BC43-928C11DDE64C}</Project>
-      <Name>AbstractCommand</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AbstractRepository\AbstractRepository.csproj">
-      <Project>{D945B099-247B-4D37-B6C4-A71BFDCD199F}</Project>
-      <Name>AbstractRepository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AbstractUserInterface\AbstractUserInterface.csproj">
-      <Project>{CF000A84-284D-4B63-954B-03DA618EDC63}</Project>
-      <Name>AbstractUserInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CommandImplementation\CommandImplementation.csproj">
-      <Project>{2F13D7E6-70D8-4223-B37D-C93764828FDF}</Project>
-      <Name>CommandImplementation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CustomerEntity\CustomerEntity.csproj">
       <Project>{32F6D32D-27B5-447E-8011-54E0CC0A59A0}</Project>
       <Name>CustomerEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RepositoryImplementation\RepositoryImplementation.csproj">
-      <Project>{854B24F6-E2B4-4F78-B7B4-AC949C6A86AF}</Project>
-      <Name>RepositoryImplementation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

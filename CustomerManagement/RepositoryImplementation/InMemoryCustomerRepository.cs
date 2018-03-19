@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using AbstractRepository;
+using CustomerEntity;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace CustomerManagementConsole
+namespace RepositoryImplementation
 {
     public class InMemoryCustomerRepository : CustomerRepository
     {

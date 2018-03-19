@@ -1,10 +1,7 @@
-﻿using System;
+﻿using CustomerEntity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CustomerManagementConsole
+namespace AbstractUserInterface
 {
     public interface UserInterface
     {

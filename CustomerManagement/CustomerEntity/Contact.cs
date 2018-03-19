@@ -1,4 +1,4 @@
-﻿namespace CustomerManagementConsole
+﻿namespace CustomerEntity
 {
     public class Contact
     {

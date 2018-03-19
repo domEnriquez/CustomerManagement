@@ -1,10 +1,14 @@
-﻿using System;
+﻿using AbstractCommand;
+using AbstractRepository;
+using AbstractUserInterface;
+using CustomerEntity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerManagementConsole
+namespace CommandImplementation
 {
     public class GetAllCustomersCommand : Command
     {

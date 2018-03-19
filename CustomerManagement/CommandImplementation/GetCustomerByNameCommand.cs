@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using AbstractCommand;
+using AbstractRepository;
+using AbstractUserInterface;
+using CustomerEntity;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CustomerManagementConsole
+namespace CommandImplementation
 {
-    internal class GetCustomerByNameCommand : Command
+    public class GetCustomerByNameCommand : Command
     {
         private CustomerRepository custRepo;
         private UserInterface ui;

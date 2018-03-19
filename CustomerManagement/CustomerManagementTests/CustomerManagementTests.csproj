@@ -66,9 +66,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AbstractRepository\AbstractRepository.csproj">
+      <Project>{D945B099-247B-4D37-B6C4-A71BFDCD199F}</Project>
+      <Name>AbstractRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbstractUserInterface\AbstractUserInterface.csproj">
+      <Project>{CF000A84-284D-4B63-954B-03DA618EDC63}</Project>
+      <Name>AbstractUserInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerEntity\CustomerEntity.csproj">
+      <Project>{32F6D32D-27B5-447E-8011-54E0CC0A59A0}</Project>
+      <Name>CustomerEntity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomerManagementConsole\CustomerManagementConsole.csproj">
       <Project>{8bc40434-0040-4038-ab50-1054baeee201}</Project>
       <Name>CustomerManagementConsole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepositoryImplementation\RepositoryImplementation.csproj">
+      <Project>{854B24F6-E2B4-4F78-B7B4-AC949C6A86AF}</Project>
+      <Name>RepositoryImplementation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

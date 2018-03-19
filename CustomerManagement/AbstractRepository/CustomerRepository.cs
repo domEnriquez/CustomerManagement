@@ -1,7 +1,7 @@
-﻿using System;
+﻿using CustomerEntity;
 using System.Collections.Generic;
 
-namespace CustomerManagementConsole
+namespace AbstractRepository
 {
     public interface CustomerRepository
     {

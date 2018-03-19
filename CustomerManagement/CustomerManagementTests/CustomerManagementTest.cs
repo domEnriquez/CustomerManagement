@@ -1,8 +1,12 @@
-﻿using ApprovalTests;
+﻿using AbstractRepository;
+using AbstractUserInterface;
+using ApprovalTests;
 using ApprovalTests.Reporters;
+using CustomerEntity;
 using CustomerManagementConsole;
 using CustomerManagementTests.TestDataBuilders;
 using NUnit.Framework;
+using RepositoryImplementation;
 using System;
 using System.Collections.Generic;
 using System.IO;
