@@ -27,7 +27,7 @@ namespace CustomerManagementConsole
 
         private static string askForCommand()
         {
-            Console.WriteLine("Enter a command:");
+            Console.Write("Enter a command:");
             string input = Console.ReadLine();
 
             return input;

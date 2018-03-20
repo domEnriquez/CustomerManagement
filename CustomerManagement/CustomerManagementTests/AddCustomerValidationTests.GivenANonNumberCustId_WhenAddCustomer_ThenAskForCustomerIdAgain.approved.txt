@@ -1,22 +1,6 @@
-﻿Customer ID: 
-Customer ID is not a number.
-Customer ID: 
-Customer ID is not a number.
-Customer ID: 
-Customer ID is not a number.
-Customer ID: 
-Customer ID is not a number.
-Customer ID: 
-First Name: 
-Last Name: 
-Email: 
-Home Address: 
-City: 
-State: 
-Zip Code: 
-Phone Number: 
-Credit Card Number: 
-Credit Card Type: 
-Credit Card Expiration Date: 
-
+﻿Customer ID: Customer ID is not a number.
+Customer ID: Customer ID is not a number.
+Customer ID: Customer ID is not a number.
+Customer ID: Customer ID is not a number.
+Customer ID: First Name: Last Name: Email: Home Address: City: State: Zip Code: Phone Number: Credit Card Number: Credit Card Type: Credit Card Expiration Date: 
 Customer data successfully saved.

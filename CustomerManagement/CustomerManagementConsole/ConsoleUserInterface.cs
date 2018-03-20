@@ -12,7 +12,7 @@ namespace CustomerManagementConsole
     {
         public string AskFor(string fieldLabel)
         {
-            Console.WriteLine(fieldLabel + ": ");
+            Console.Write(fieldLabel + ": ");
             return GetUserInput();
         }
 
