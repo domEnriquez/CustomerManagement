@@ -52,6 +52,18 @@ namespace CustomerManagementTests
         public class AcceptanceTests : CustomerManagementTest
         {
             [Test]
+            public void WhenApplicationStarts_ThenBuildAndShowMenu()
+            {
+                using (StringReader sr = new StringReader("5"))
+                {
+                    Console.SetIn(sr);
+                    Program.Main(new string[] { });
+                }
+
+                Approvals.Verify(fakeOutput);
+            }
+
+            [Test]
             public void GivenNoCustomerAdded_WhenSelectGetAllCustomersOption_ThenReturnNoCustomersFound()
             {
                 menuItems[(int)menuEnum.GetAllCustomers].ExecuteCommand();

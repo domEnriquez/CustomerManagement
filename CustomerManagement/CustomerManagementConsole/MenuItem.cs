@@ -12,9 +12,10 @@ namespace CustomerManagementConsole
         public string Label { get; set; }
         private Command command;
 
-        public MenuItem(Command com)
+        public MenuItem(Command com, string label)
         {
             command = com;
+            Label = label;
         }
 
         public void ExecuteCommand()

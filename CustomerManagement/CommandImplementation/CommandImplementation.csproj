@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCustomerCommand.cs" />
+    <Compile Include="ExitCommand.cs" />
     <Compile Include="GetAllCustomersCommand.cs" />
     <Compile Include="GetCustomerByIdCommand.cs" />
     <Compile Include="GetCustomerByNameCommand.cs" />
