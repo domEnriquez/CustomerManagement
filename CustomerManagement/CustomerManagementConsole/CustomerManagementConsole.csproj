@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="ConsoleUserInterface.cs" />
     <Compile Include="MenuItem.cs" />
-    <Compile Include="MenuEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

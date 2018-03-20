@@ -66,7 +66,7 @@ namespace CustomerManagementTests
             [Test]
             public void GivenNoCustomerAdded_WhenSelectGetAllCustomersOption_ThenReturnNoCustomersFound()
             {
-                menuItems[(int)menuEnum.GetAllCustomers].ExecuteCommand();
+                menuItems[(int)MenuEnum.GetAllCustomers].ExecuteCommand();
 
                 Approvals.Verify(fakeOutput);
             }
@@ -78,7 +78,7 @@ namespace CustomerManagementTests
                 repo.AddCustomer(new CustomerBuilder().withId("000002")
                                     .withName("Roddick", "Quezon").build());
 
-                menuItems[(int)menuEnum.GetAllCustomers].ExecuteCommand();
+                menuItems[(int)MenuEnum.GetAllCustomers].ExecuteCommand();
 
                 Approvals.Verify(fakeOutput);
             }
@@ -93,7 +93,7 @@ namespace CustomerManagementTests
                 using (StringReader sr = new StringReader("000001"))
                 {
                     Console.SetIn(sr);
-                    menuItems[(int)menuEnum.GetCustomerById].ExecuteCommand();
+                    menuItems[(int)MenuEnum.GetCustomerById].ExecuteCommand();
                 }
 
                 Approvals.Verify(fakeOutput);
@@ -105,7 +105,7 @@ namespace CustomerManagementTests
                 using (StringReader sr = new StringReader("000001"))
                 {
                     Console.SetIn(sr);
-                    menuItems[(int)menuEnum.GetCustomerById].ExecuteCommand();
+                    menuItems[(int)MenuEnum.GetCustomerById].ExecuteCommand();
                 }
 
                 Approvals.Verify(fakeOutput);
@@ -119,7 +119,7 @@ namespace CustomerManagementTests
                 using (StringReader sr = new StringReader(simulatedCustDetailInput(expectCust)))
                 {
                     Console.SetIn(sr);
-                    menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
+                    menuItems[(int)MenuEnum.AddCustomer].ExecuteCommand();
                 }
 
                 Customer actualCust = repo.GetCustomerById("000008");
@@ -140,7 +140,7 @@ namespace CustomerManagementTests
                 using (StringReader sr = new StringReader("Dom"))
                 {
                     Console.SetIn(sr);
-                    menuItems[(int)menuEnum.GetCustomerByName].ExecuteCommand();
+                    menuItems[(int)MenuEnum.GetCustomerByName].ExecuteCommand();
                 }
 
                 Approvals.Verify(fakeOutput);
@@ -152,7 +152,7 @@ namespace CustomerManagementTests
                 using (StringReader sr = new StringReader("Dom"))
                 {
                     Console.SetIn(sr);
-                    menuItems[(int)menuEnum.GetCustomerByName].ExecuteCommand();
+                    menuItems[(int)MenuEnum.GetCustomerByName].ExecuteCommand();
                 }
 
                 Approvals.Verify(fakeOutput);
@@ -171,7 +171,7 @@ namespace CustomerManagementTests
                 using (StringReader sr = new StringReader(simulateAddCustWithCorrectedInput(expectCust, 1, 4, validCustName)))
                 {
                     Console.SetIn(sr);
-                    menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
+                    menuItems[(int)MenuEnum.AddCustomer].ExecuteCommand();
                 }
 
                 Customer actualCust = repo.GetCustomerById("000001");
@@ -189,7 +189,7 @@ namespace CustomerManagementTests
                 using (StringReader sr = new StringReader(simulateAddCustWithCorrectedInput(expectCust, 0, 4, validCustId)))
                 {
                     Console.SetIn(sr);
-                    menuItems[(int)menuEnum.AddCustomer].ExecuteCommand();
+                    menuItems[(int)MenuEnum.AddCustomer].ExecuteCommand();
                 }
 
                 Customer actualCust = repo.GetCustomerById(validCustId);

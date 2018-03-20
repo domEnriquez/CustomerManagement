@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerManagementConsole
+namespace CustomerManagementTests
 {
-    public enum menuEnum
+    public enum MenuEnum
     {
         GetAllCustomers,
         GetCustomerById,
