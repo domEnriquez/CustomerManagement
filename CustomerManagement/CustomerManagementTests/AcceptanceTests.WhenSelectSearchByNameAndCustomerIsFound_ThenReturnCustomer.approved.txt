@@ -1,4 +1,4 @@
-﻿---------------
+﻿Enter Customer Name: ---------------
 Customer ID: 000001
 Name: Dominic Enriquez
 Email: d@y.com

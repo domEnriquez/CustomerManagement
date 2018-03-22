@@ -26,7 +26,17 @@ namespace CustomerManagementConsole
         {
             Console.WriteLine("---------------");
             Console.WriteLine("Customer ID: " + cust.CustomerID);
-            Console.WriteLine("Name: " + cust.FirstName);
+            Console.WriteLine("Name: " + cust.FullName);
+            Console.WriteLine("Email: " + cust.Contact.Email);
+            Console.WriteLine("Phone: " + cust.Contact.PhoneNumber);
+            Console.WriteLine("Home Address: " + cust.Address.HomeAddress);
+            Console.WriteLine("City: " + cust.Address.City);
+            Console.WriteLine("State: " + cust.Address.State);
+            Console.WriteLine("Zip Code: " + cust.Address.ZipCode);
+            Console.WriteLine("Credit Card No: " + cust.CreditCard.Number);
+            Console.WriteLine("Credit Card Type: " + cust.CreditCard.Type);
+            Console.WriteLine("Credit Card Expiration Date: " + cust.CreditCard.ExpirationDate);
+
             Console.WriteLine("---------------");
         }
 
@@ -39,22 +49,7 @@ namespace CustomerManagementConsole
         public void ShowCustomers(IEnumerable<Customer> customers)
         {
             foreach (Customer cust in customers)
-            {
-                Console.WriteLine("---------------");
-                Console.WriteLine("Customer ID: " + cust.CustomerID);
-                Console.WriteLine("Name: " + cust.FullName);
-                Console.WriteLine("Email: " + cust.Contact.Email);
-                Console.WriteLine("Phone: " + cust.Contact.PhoneNumber);
-                Console.WriteLine("Home Address: " + cust.Address.HomeAddress);
-                Console.WriteLine("City: " + cust.Address.City);
-                Console.WriteLine("State: " + cust.Address.State);
-                Console.WriteLine("Zip Code: " + cust.Address.ZipCode);
-                Console.WriteLine("Credit Card No: " + cust.CreditCard.Number);
-                Console.WriteLine("Credit Card Type: " + cust.CreditCard.Type);
-                Console.WriteLine("Credit Card Expiration Date: " + cust.CreditCard.ExpirationDate);
-
-                Console.WriteLine("---------------");
-            }
+                ShowCustomer(cust);
         }
 
         public void ShowMessage(string message)

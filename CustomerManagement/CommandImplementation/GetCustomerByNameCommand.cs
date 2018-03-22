@@ -20,7 +20,7 @@ namespace CommandImplementation
 
         public void Execute()
         {
-            string name = ui.GetUserInput();
+            string name = ui.AskFor("Enter Customer Name");
             IEnumerable<Customer> customers = custRepo.GetCustomersByName(name);
 
             if (customers.Count() == 0)

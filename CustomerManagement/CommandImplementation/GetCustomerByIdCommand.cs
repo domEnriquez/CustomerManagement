@@ -18,7 +18,7 @@ namespace CommandImplementation
 
         public void Execute()
         {
-            string id = ui.GetUserInput();
+            string id = ui.AskFor("Enter Customer ID");
             Customer cust = custRepo.GetCustomerById(id);
 
             if (cust == null)
