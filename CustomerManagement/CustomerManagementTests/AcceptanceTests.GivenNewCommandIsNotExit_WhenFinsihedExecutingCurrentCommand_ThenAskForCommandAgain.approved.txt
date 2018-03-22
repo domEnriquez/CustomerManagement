@@ -1,0 +1,30 @@
+﻿-----------------------------------------------
+Welcome to the Customer Management Application
+-----------------------------------------------
+
+COMMAND MENU
+1 - List all customers
+2 - Find customer
+3 - Find customer by name
+4 - Add a customer
+5 - Exit
+
+Enter a command:No Customers Found
+
+COMMAND MENU
+1 - List all customers
+2 - Find customer
+3 - Find customer by name
+4 - Add a customer
+5 - Exit
+
+Enter a command:No Customers Found
+
+COMMAND MENU
+1 - List all customers
+2 - Find customer
+3 - Find customer by name
+4 - Add a customer
+5 - Exit
+
+Enter a command:

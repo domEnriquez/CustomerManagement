@@ -64,6 +64,18 @@ namespace CustomerManagementTests
             }
 
             [Test]
+            public void GivenNewCommandIsNotExit_WhenFinsihedExecutingCurrentCommand_ThenAskForCommandAgain()
+            {
+                using (StringReader sr = new StringReader("1\r\n1\r\n5"))
+                {
+                    Console.SetIn(sr);
+                    Program.Main(new string[] { });
+                }
+
+                Approvals.Verify(fakeOutput);
+            }
+
+            [Test]
             public void GivenNoCustomerAdded_WhenSelectGetAllCustomersOption_ThenReturnNoCustomersFound()
             {
                 menuItems[(int)MenuEnum.GetAllCustomers].ExecuteCommand();

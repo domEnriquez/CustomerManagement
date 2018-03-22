@@ -18,11 +18,18 @@ namespace CustomerManagementConsole
 
             List<MenuItem> menuItems = BuildMenu(new InMemoryCustomerRepository(), new ConsoleUserInterface());
 
-            showMenu(menuItems);
+            string input = string.Empty;
 
-            string input = askForCommand();
+            do
+            {
+                showMenu(menuItems);
 
-            menuItems[Convert.ToInt32(input) - 1].ExecuteCommand();
+                input = askForCommand();
+
+                menuItems[Convert.ToInt32(input) - 1].ExecuteCommand();
+
+            } while (input != "5");
+
         }
 
         private static string askForCommand()
@@ -35,6 +42,7 @@ namespace CustomerManagementConsole
 
         private static void showMenu(List<MenuItem> menuItems)
         {
+            Console.WriteLine();
             Console.WriteLine("COMMAND MENU");
 
             foreach (MenuItem menuItem in menuItems)
